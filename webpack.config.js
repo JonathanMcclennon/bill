@@ -13,7 +13,17 @@ module.exports = {
         query: {
           presets: ['es2015', 'react']
         }
-      }
-    ]
+     },
+     {
+         test: /.json$/,
+         loader: 'json'
+     }
+    ],
+    externals: {
+        'cheerio': 'window',
+        'react/addons': true,
+        'react/lib/ExecutionEnvironment': true,
+        'react/lib/ReactContext': true
+    }
   },
 };
