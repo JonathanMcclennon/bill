@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import settings from './settings';
 import BillStore from './stores/BillStore';
 import Title from './components/title.react';
 import Total from './components/total.react';
@@ -38,7 +39,7 @@ class App extends React.Component {
         }
         return <div>
             <Title due={this.state.timings.due} generated={this.state.timings.generated} period={this.state.timings.period} />
-            <Total currency='£' total={this.state.total} />
+            <Total currency={settings.currency} total={this.state.total} />
         </div>;
     }
 }
