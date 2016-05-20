@@ -2,9 +2,10 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import App from '../src/app.js';
 
-describe('Setup Test', () => {
-  it('should equat true', () => {
+describe('App', () => {
+  it('should render loading view when isBillReady is false', () => {
     const app = shallow(<App />);
-    expect(app.text()).toEqual('This is the app');
+    expect(app.text()).toEqual('Loading');
   });
+
 });

@@ -3,7 +3,7 @@ import { render } from 'enzyme';
 import Title from '../../src/components/title.react.js';
 
 describe('.title', () => {
-  it('should render the due date', () => {
+  it('should render the correct html', () => {
       let period = {
           from: 1,
           to: 2
