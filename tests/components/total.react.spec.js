@@ -4,8 +4,8 @@ import Total from '../../src/components/total.react.js';
 
 describe('.total', () => {
     it('should render the correct html', () => {
-      let result = '<div>£132.55</div>';
-      const total = render(<Total total='132.55' />);
-      expect(total.html()).toEqual(result);
+      let result = '£132.55';
+      const total = render(<Total total='132.55' currency='£' />);
+      expect(total.text()).toEqual(result);
     });
 });

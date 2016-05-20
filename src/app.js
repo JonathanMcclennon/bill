@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import BillStore from './stores/BillStore';
 import Title from './components/title.react';
+import Total from './components/total.react';
 
 const initialState = {
     isBillReady: BillStore.isBillReady()
@@ -26,7 +27,8 @@ class App extends React.Component {
     _onChange() {
         this.setState({
             timings: BillStore.getStatementTimings(),
-            isBillReady: BillStore.isBillReady()
+            isBillReady: BillStore.isBillReady(),
+            total: BillStore.getStatementTotal()
         });
     }
 
@@ -34,7 +36,10 @@ class App extends React.Component {
         if (!this.state.isBillReady) {
             return <div>Loading</div>
         }
-        return <div><Title due={this.state.timings.due} generated={this.state.timings.generated} period={this.state.timings.period} />This is the app</div>;
+        return <div>
+            <Title due={this.state.timings.due} generated={this.state.timings.generated} period={this.state.timings.period} />
+            <Total currency='£' total={this.state.total} />
+        </div>;
     }
 }
 
