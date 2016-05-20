@@ -51,6 +51,8 @@ const BillStore = assign({}, EventEmitter.prototype, {
             _subscriptions = data.package.subscriptions;
         }
 
+        //subscription total is missing
+
         if (data.callCharges) {
             if (data.callCharges.total) {
                 _callTotal = data.callCharges.total;
