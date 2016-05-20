@@ -36,6 +36,6 @@ describe('.calls', () => {
 
     it('should render the call total', () => {
         const subscriptions = shallow(<Calls calls={callData} currency='$' callTotal={callTotal}/>);
-        expect(subscriptions.find('div').at(0).html()).toEqual('$20.32');
+        expect(subscriptions.find('div').at(0).text()).toEqual('$20.32');
     });
 });
