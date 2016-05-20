@@ -1,4 +1,5 @@
 import request from 'superagent';
+import BillServerAction from '../actions/BillServerAction';
 
 module.exports = {
     getBill() {
@@ -9,7 +10,7 @@ module.exports = {
                     console.info(err);
                     return;
                 }
-                console.info(response);
+                BillServerAction.recieveBill(response);
             });
     }
 }

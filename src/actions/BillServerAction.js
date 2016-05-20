@@ -3,8 +3,8 @@ import AppDispatcher from '../dispatcher/appDispatcher';
 
 module.exports = {
     recieveBill(data) {
-        AppDispatcher.dispatch({
-            type: BillConstants.RECIEVE_BILL_SERVER,
+        AppDispatcher.handleServerAction({
+            actionType: BillConstants.RECIEVE_BILL,
             data: data
         });
     }

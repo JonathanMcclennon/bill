@@ -1,6 +1,6 @@
 import _ from 'underscore';
 import assign from 'object-assign';
-import AppDispatcher from '../dispatcher/AppDispatcher';
+import AppDispatcher from '../dispatcher/appDispatcher';
 import {EventEmitter} from 'events';
 import BillConstants from '../constants/bill';
 
@@ -108,9 +108,8 @@ const BillStore = assign({}, EventEmitter.prototype, {
     }
 });
 
-BillStore.dispatchToken = AppDispatcher.register((payload) => {
+AppDispatcher.register((payload) => {
     const action = payload.action;
-
     switch(action.actionType) {
         case(BillConstants.RECIEVE_BILL):
             BillStore.init(action.data)

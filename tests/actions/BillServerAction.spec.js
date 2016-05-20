@@ -8,10 +8,10 @@ describe('BillServerAction', () => {
             let data = {
                 attr1: true
             };
-            spyOn(AppDispatcher, 'dispatch');
+            spyOn(AppDispatcher, 'handleServerAction');
             BillServerAction.recieveBill(data);
-            expect(AppDispatcher.dispatch).toHaveBeenCalledWith({
-                type: BillConstants.RECIEVE_BILL_SERVER,
+            expect(AppDispatcher.handleServerAction).toHaveBeenCalledWith({
+                actionType: BillConstants.RECIEVE_BILL,
                 data: data
             });
         });
