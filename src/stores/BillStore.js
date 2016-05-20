@@ -6,6 +6,7 @@ import BillConstants from '../constants/bill';
 
 const CHANGE_EVENT = 'change';
 
+let _billReady = false;
 let _timings;
 let _subscriptions;
 let _callCharges;
@@ -75,6 +76,10 @@ const BillStore = assign({}, EventEmitter.prototype, {
         }
     },
 
+    isBillReady() {
+        return _billReady;
+    },
+
     getStatementTotal() {
         return _statementTotal;
     },
@@ -112,7 +117,8 @@ AppDispatcher.register((payload) => {
     const action = payload.action;
     switch(action.actionType) {
         case(BillConstants.RECIEVE_BILL):
-            BillStore.init(action.data)
+            BillStore.init(action.data.body)
+            _billReady = true;
             BillStore.emitChange();
             return;
         default:
