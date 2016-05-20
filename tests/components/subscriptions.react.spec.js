@@ -8,16 +8,16 @@ describe('.subscriptions', () => {
 
     beforeEach(() => {
         subscriptionsData = [{
-            type: "tv",
-            name: "Movies",
+            type: 'tv',
+            name: 'Movies',
             cost: 50
         },{
-            type: "talk",
-            name: "Talk",
+            type: 'talk',
+            name: 'Talk',
             cost: 5
         },{
-            type: "broadband",
-            name: "Internet",
+            type: 'broadband',
+            name: 'Internet',
             cost: 16.4
         }]
     });
