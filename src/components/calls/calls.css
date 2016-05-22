@@ -1,0 +1,43 @@
+.root {
+    padding-top: 24px;
+    margin: 12px;
+    font-size: 12px;
+}
+
+.title {
+    font-size: 18px;
+}
+
+.table {
+    width: 100%;
+}
+
+.heading {
+    text-align: left;
+    font-weight: bold;
+    line-height: 50px;
+    font-size: 16px;
+}
+
+.headingCost {
+    text-align: right;
+}
+
+.bodyCost {
+    text-align: right;
+}
+
+.total {
+    line-height: 50px;
+    font-size: 16px;
+}
+
+.totalTitle {
+    text-align: left;
+    font-weight: bold;
+}
+
+.totalValue {
+    text-align: right;
+    font-weight: bold;
+}
