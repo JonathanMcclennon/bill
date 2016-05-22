@@ -6,6 +6,7 @@ import Title from './components/title.react';
 import Total from './components/total.react';
 import Subscriptions from './components/subscriptions.react';
 import Calls from './components/calls.react';
+import Store from './components/store.react';
 
 const initialState = {
     isBillReady: BillStore.isBillReady()
@@ -34,7 +35,10 @@ class App extends React.Component {
             total: BillStore.getStatementTotal(),
             subscriptions: BillStore.getSubscriptions(),
             calls: BillStore.getCallCharges(),
-            callTotal: BillStore.getCallTotal()
+            callTotal: BillStore.getCallTotal(),
+            rentals: BillStore.getRentals(),
+            bought: BillStore.getBuyAndKeep(),
+            storeTotal: BillStore.getStoreTotal()
         });
     }
 
@@ -47,6 +51,7 @@ class App extends React.Component {
             <Total currency={settings.currency} total={this.state.total} />
             <Subscriptions currency={settings.currency} subscriptions={this.state.subscriptions} />
             <Calls calls={this.state.calls} callTotal={this.state.callTotal} currency={settings.currency} />
+            <Store rentals={this.state.rentals} bought={this.state.bought} storeTotal={this.state.storeTotal} currency={settings.currency} />
         </div>;
     }
 }

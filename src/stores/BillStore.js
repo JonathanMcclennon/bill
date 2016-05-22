@@ -73,7 +73,7 @@ const BillStore = assign({}, EventEmitter.prototype, {
             }
 
             if (data.skyStore.buyAndKeep) {
-                _rentals = data.skyStore.buyAndKeep;
+                _buyAndKeep = data.skyStore.buyAndKeep;
             }
         }
     },
