@@ -1,0 +1,51 @@
+.root {
+    margin: 12px;
+    font-size: 12px;
+}
+
+.title {
+    font-size: 18px;
+}
+
+.item {
+    margin-top: 12px;
+}
+
+.item:after {
+    content: " ";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.itemTitle {
+    width: 50%;
+    float: left;
+    font-weight: bold;
+}
+
+.itemName {
+    width: 50%;
+    float: left;
+    text-align: right;
+}
+
+.total {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #000;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.totalTitle {
+    width: 50%;
+    float: left;
+}
+
+.totalPrice {
+    width: 50%;
+    float: left;
+    text-align: right;
+}

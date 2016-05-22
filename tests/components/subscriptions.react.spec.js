@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Subscriptions from '../../src/components/subscriptions.react.js';
+import Subscriptions from '../../src/components/subscriptions/subscriptions.react.js';
+import Styles from '../../src/components/subscriptions/subscriptions.css';
 
 describe('.subscriptions', () => {
 
@@ -29,6 +30,6 @@ describe('.subscriptions', () => {
 
     it('should render the correct information in the item view', () => {
       const subscriptions = shallow(<Subscriptions subscriptions={subscriptionsData} currency='$'/>);
-      expect(subscriptions.find('li').at(0).html()).toEqual('<li><span>tv</span><span>Movies</span><span>$50</span></li>');
+      expect(subscriptions.find('li').at(0).html()).toEqual(`<li><dl class="${Styles.item}"><dt class="${Styles.itemTitle}">Name</dt><dd class="${Styles.itemName}">Movies</dd><dt class="${Styles.itemTitle}">Price</dt><dd class="${Styles.itemName}">$50</dd></dl></li>`);
     });
 });

@@ -9,6 +9,7 @@ const CHANGE_EVENT = 'change';
 let _billReady = false;
 let _timings;
 let _subscriptions;
+let _subscriptionTotal;
 let _callCharges;
 let _rentals;
 let _buyAndKeep;
@@ -47,11 +48,13 @@ const BillStore = assign({}, EventEmitter.prototype, {
             _timings = data.statement;
         }
 
-        if (data.package && data.package.subscriptions) {
-            _subscriptions = data.package.subscriptions;
-        }
+        if (data.package) {
+            if (data.package.subscriptions) {
+                _subscriptions = data.package.subscriptions;
+            }
 
-        //subscription total is missing
+            _subscriptionTotal = data.package.total;
+        }
 
         if (data.callCharges) {
             if (data.callCharges.total) {
@@ -92,6 +95,10 @@ const BillStore = assign({}, EventEmitter.prototype, {
 
     getSubscriptions() {
         return _subscriptions;
+    },
+
+    getSubscriptionTotal() {
+        return _subscriptionTotal;
     },
 
     getCallCharges() {
