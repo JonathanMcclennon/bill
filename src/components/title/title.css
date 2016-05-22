@@ -1,0 +1,17 @@
+.root {
+    text-align: center;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.subtitle {
+    display: inline-block;
+    margin-right: 12px;
+}
+
+.item {
+    display: inline-block;
+}

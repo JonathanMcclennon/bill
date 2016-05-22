@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import settings from './settings';
 import BillStore from './stores/BillStore';
-import Title from './components/title.react';
+import Title from './components/title/title.react';
 import Total from './components/total.react';
 import Subscriptions from './components/subscriptions.react';
 import Calls from './components/calls.react';
@@ -46,13 +46,13 @@ class App extends React.Component {
         if (!this.state.isBillReady) {
             return <div>Loading</div>
         }
-        return <div>
+        return <main>
             <Title due={this.state.timings.due} generated={this.state.timings.generated} period={this.state.timings.period} />
             <Total currency={settings.currency} total={this.state.total} />
             <Subscriptions currency={settings.currency} subscriptions={this.state.subscriptions} />
             <Calls calls={this.state.calls} callTotal={this.state.callTotal} currency={settings.currency} />
             <Store rentals={this.state.rentals} bought={this.state.bought} storeTotal={this.state.storeTotal} currency={settings.currency} />
-        </div>;
+        </main>;
     }
 }
 
