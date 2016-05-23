@@ -46,7 +46,7 @@ class Store extends React.Component {
             {rentals}
             {bought}
             <dl className={Styles.total}>
-                <dt className={Styles.totalTitle}>Total</dt>
+                <dt className={Styles.totalTitle}>Store Total</dt>
                 <dd className={Styles.totalPrice}>{this.getFormattedCurrency(this.props.total)}</dd>
             </dl>
         </section>

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import settings from './settings';
 import BillStore from './stores/BillStore';
 import Title from './components/title/title.react';
-import Total from './components/total.react';
+import Total from './components/total/total.react';
 import Subscriptions from './components/subscriptions/subscriptions.react';
 import Calls from './components/calls/calls.react';
 import Store from './components/store/store.react';

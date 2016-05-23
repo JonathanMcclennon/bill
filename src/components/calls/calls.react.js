@@ -27,7 +27,7 @@ class Calls extends React.Component {
                 </thead>
                 <tfoot>
                     <tr className={Styles.total}>
-                        <th className={Styles.totalTitle}>Total</th>
+                        <th className={Styles.totalTitle}>Calls Total</th>
                         <th className={Styles.totalValue} colSpan='2'>{this.getFormattedCurrency(this.props.callTotal)}</th>
                     </tr>
                 </tfoot>

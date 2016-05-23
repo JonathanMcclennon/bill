@@ -22,7 +22,7 @@ class Subscriptions extends React.Component {
                 <h2 className={Styles.title}>Subscriptions</h2>
                 {subscriptions}
                 <dl className={Styles.total}>
-                    <dt className={Styles.totalTitle}>Total</dt>
+                    <dt className={Styles.totalTitle}>Subscription Total</dt>
                     <dd className={Styles.totalPrice}>{this.getFormattedCurrency(this.props.total)}</dd>
                 </dl>
             </section>

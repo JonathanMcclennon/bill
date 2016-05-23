@@ -1,4 +1,5 @@
 import React from 'react';
+import Styles from './total.css';
 
 class Total extends React.Component {
 
@@ -7,7 +8,7 @@ class Total extends React.Component {
     }
 
     render() {
-        return <div>{this.getFormattedCurrency()}</div>
+        return <div className={Styles.root}>Total: {this.getFormattedCurrency()}</div>
     }
 }
 
