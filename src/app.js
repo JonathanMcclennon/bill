@@ -49,9 +49,9 @@ class App extends React.Component {
         }
         return <main>
             <Title due={this.state.timings.due} generated={this.state.timings.generated} period={this.state.timings.period} />
-            <Subscriptions currency={settings.currency} subscriptions={this.state.subscriptions} total={this.state.subscriptionTotal} />
-            <Calls calls={this.state.calls} callTotal={this.state.callTotal} currency={settings.currency} />
+            <Subscriptions subscriptions={this.state.subscriptions} total={this.state.subscriptionTotal} />
             <Store rentals={this.state.rentals} bought={this.state.bought} total={this.state.storeTotal} currency={settings.currency} />
+            <Calls calls={this.state.calls} callTotal={this.state.callTotal} />
             <Total currency={settings.currency} total={this.state.total} />
         </main>;
     }

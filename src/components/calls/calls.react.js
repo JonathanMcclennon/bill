@@ -1,18 +1,15 @@
 import React from 'react';
 import Styles from './calls.css';
+import currency from '../../utils/currency';
 
 class Calls extends React.Component {
-    /**
-     * @return {String} Formatted currency value
-     */
-    getFormattedCurrency(value) {
-        return this.props.currency + String(value);
-    }
-
     render() {
-        let that = this;
         let calls = this.props.calls.map((call, key) => {
-            return <tr key={key}><td>{call.called}</td><td>{call.duration}</td><td className={Styles.bodyCost}>{that.getFormattedCurrency(call.cost)}</td></tr>;
+            return <tr key={key}>
+                <td>{call.called}</td>
+                <td>{call.duration}</td>
+                <td className={Styles.bodyCost}>{currency.getFormattedCurrency(call.cost)}</td>
+            </tr>;
         });
 
         return <section className={Styles.root}>
@@ -28,7 +25,7 @@ class Calls extends React.Component {
                 <tfoot>
                     <tr className={Styles.total}>
                         <th className={Styles.totalTitle}>Calls Total</th>
-                        <th className={Styles.totalValue} colSpan='2'>{this.getFormattedCurrency(this.props.callTotal)}</th>
+                        <th className={Styles.totalValue} colSpan='2'>{currency.getFormattedCurrency(this.props.callTotal)}</th>
                     </tr>
                 </tfoot>
                 <tbody>{calls}</tbody>
