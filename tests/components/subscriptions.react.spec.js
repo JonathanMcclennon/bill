@@ -25,11 +25,11 @@ describe('.subscriptions', () => {
 
     it('should render three item views', () => {
       const subscriptions = shallow(<Subscriptions subscriptions={subscriptionsData} currency='$'/>);
-      expect(subscriptions.find('li').length).toEqual(3);
+      expect(subscriptions.find(`.${Styles.item}`).length).toEqual(3);
     });
 
     it('should render the correct information in the item view', () => {
       const subscriptions = shallow(<Subscriptions subscriptions={subscriptionsData} currency='$'/>);
-      expect(subscriptions.find('li').at(0).html()).toEqual(`<li><dl class="${Styles.item}"><dt class="${Styles.itemTitle}">Name</dt><dd class="${Styles.itemName}">Movies</dd><dt class="${Styles.itemTitle}">Price</dt><dd class="${Styles.itemName}">$50</dd></dl></li>`);
+      expect(subscriptions.find('dl').at(0).html()).toEqual(`<dl class="${Styles.item}"><dt class="${Styles.itemTitle}">Name</dt><dd class="${Styles.itemName}">Movies</dd><dt class="${Styles.itemTitle}">Price</dt><dd class="${Styles.itemName}">$50</dd></dl>`);
     });
 });

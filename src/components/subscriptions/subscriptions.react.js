@@ -12,17 +12,15 @@ class Subscriptions extends React.Component {
     render() {
         let that = this;
         let subscriptions = this.props.subscriptions.map((subscription, key) => {
-            return <li key={key}>
-                <dl className={Styles.item}>
+            return <dl className={Styles.item} key={key}>
                     <dt className={Styles.itemTitle}>Name</dt><dd className={Styles.itemName}>{subscription.name}</dd>
                     <dt className={Styles.itemTitle}>Price</dt><dd className={Styles.itemName}>{that.getFormattedCurrency(subscription.cost)}</dd>
-                </dl>
-            </li>;
+                </dl>;
         });
 
         return <section className={Styles.root}>
                 <h2 className={Styles.title}>Subscriptions</h2>
-                <ul>{subscriptions}</ul>
+                {subscriptions}
                 <dl className={Styles.total}>
                     <dt className={Styles.totalTitle}>Total</dt>
                     <dd className={Styles.totalPrice}>{this.getFormattedCurrency(this.props.total)}</dd>

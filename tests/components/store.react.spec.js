@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Store from '../../src/components/store.react.js';
+import Store from '../../src/components/store/store.react.js';
+import Styles from '../../src/components/store/store.css';
 
 describe('.store', () => {
     describe('.render', () => {
@@ -23,21 +24,19 @@ describe('.store', () => {
             }];
 
             total = 12.32
-            store = shallow(<Store rentals={rentals} bought={bought} storeTotal={total} currency='£'/>);
+            store = shallow(<Store rentals={rentals} bought={bought} total={total} currency='£'/>);
         });
 
-        it('should render the rental elements', () => {
-            expect(store.find('.store__rentals li').length).toEqual(2);
-            expect(store.find('.store__rentals li').at(0).html()).toEqual('<li><span>rental title one</span><span>£3</span></li>');
+        it('should render the rented elements', () => {
+            expect(store.find(`.${Styles.rentalItem}`).at(0).html()).toEqual(`<dl class="${Styles.rentalItem}"><dt class="${Styles.rentalItemTitle}">Name</dt><dd class="${Styles.rentalItemName}">rental title one</dd><dt class="${Styles.rentalItemTitle}">Price</dt><dd class="${Styles.rentalItemName}">£3<span>(Rent)</span></dd></dl>`);
         });
 
         it('should render the bought elements', () => {
-            expect(store.find('.store__bought li').length).toEqual(2);
-            expect(store.find('.store__bought li').at(0).html()).toEqual('<li><span>bought title one</span><span>£12.33</span></li>');
+            expect(store.find(`.${Styles.boughtItem}`).at(1).html()).toEqual(`<dl class="${Styles.boughtItem}"><dt class="${Styles.boughtItemTitle}">Name</dt><dd class="${Styles.boughtItemName}">bought title two</dd><dt class="${Styles.boughtItemTitle}">Price</dt><dd class="${Styles.boughtItemName}">£16.32<span>(Buy)</span></dd></dl>`);
         });
 
         it('should render the store total', () => {
-            expect(store.find('.store__total').text()).toEqual('£12.32');
+            expect(store.find(`.${Styles.total}`).html()).toEqual(`<dl className=${Styles.total}><dt className=${Styles.totalTitle}>Total</dt><dd className=${Styles.totalPrice}>£12.32</dd></dl>`);
         });
     });
 });
