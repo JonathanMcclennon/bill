@@ -2,8 +2,36 @@ import React from 'react';
 import Styles from './calls.css';
 import currency from '../../utils/currency';
 
+let initialState = {
+    hidden: true
+}
+
+
 class Calls extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = initialState;
+        this._onHeadingClick = this._onHeadingClick.bind(this);
+    }
+
+    _onHeadingClick() {
+        this.setState({
+            hidden: !this.state.hidden
+        });
+    }
+
     render() {
+        if (this.state.hidden) {
+            return <section className={Styles.root}>
+                <h2 onClick={this._onHeadingClick} className={Styles.title}>Calls</h2>
+                <dl className={Styles.total}>
+                    <dt className={Styles.totalTitle}>Call Total</dt>
+                    <dd className={Styles.totalPrice}>{currency.getFormattedCurrency(this.props.callTotal)}</dd>
+                </dl>
+            </section>
+        }
+
         let calls = this.props.calls.map((call, key) => {
             return <tr key={key}>
                 <td>{call.called}</td>
@@ -13,7 +41,7 @@ class Calls extends React.Component {
         });
 
         return <section className={Styles.root}>
-            <h2 className={Styles.title}>Calls</h2>
+            <h2 onClick={this._onHeadingClick} className={Styles.title}>Calls</h2>
             <table className={Styles.table}>
                 <thead className={Styles.heading}>
                     <tr>
@@ -23,9 +51,9 @@ class Calls extends React.Component {
                     </tr>
                 </thead>
                 <tfoot>
-                    <tr className={Styles.total}>
-                        <th className={Styles.totalTitle}>Calls Total</th>
-                        <th className={Styles.totalValue} colSpan='2'>{currency.getFormattedCurrency(this.props.callTotal)}</th>
+                    <tr className={Styles.tableTotal}>
+                        <th className={Styles.tableTotalTitle}>Calls Total</th>
+                        <th className={Styles.tableTotalValue} colSpan='2'>{currency.getFormattedCurrency(this.props.callTotal)}</th>
                     </tr>
                 </tfoot>
                 <tbody>{calls}</tbody>

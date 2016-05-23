@@ -28,16 +28,35 @@
 }
 
 .total {
-    line-height: 50px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #000;
+    font-weight: bold;
     font-size: 16px;
 }
 
 .totalTitle {
+    width: 50%;
+    float: left;
+}
+
+.totalPrice {
+    width: 50%;
+    float: left;
+    text-align: right;
+}
+
+.tableTotal {
+    line-height: 50px;
+    font-size: 16px;
+}
+
+.tableTotalTitle {
     text-align: left;
     font-weight: bold;
 }
 
-.totalValue {
+.tableTotalValue {
     text-align: right;
     font-weight: bold;
 }

@@ -2,7 +2,18 @@ import React from 'react';
 import currency from '../../utils/currency';
 import Styles from './store.css';
 
+let initialState = {
+    hidden: true
+}
+
 class Store extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = initialState;
+        this._onHeadingClick = this._onHeadingClick.bind(this);
+    }
+
     /**
      * @return {DOM} List of rented items
      */
@@ -31,18 +42,35 @@ class Store extends React.Component {
         });
     }
 
-    render() {
-        let rentals = this.getRentalElements();
-        let bought = this.getBoughtElements();
+    _onHeadingClick() {
+        this.setState({
+            hidden: !this.state.hidden
+        });
+    }
 
-        return <section className={Styles.root}>
-            <h2 className={Styles.title}>Store</h2>
-            {rentals}
-            {bought}
-            <dl className={Styles.total}>
+    render() {
+        let rentals,
+            bought,
+            total = <dl className={Styles.total}>
                 <dt className={Styles.totalTitle}>Store Total</dt>
                 <dd className={Styles.totalPrice}>{currency.getFormattedCurrency(this.props.total)}</dd>
             </dl>
+
+        if (this.state.hidden) {
+            return <section className={Styles.root}>
+                <h2 onClick={this._onHeadingClick} className={Styles.title}>Store</h2>
+                {total}
+            </section>
+        }
+
+        rentals = this.getRentalElements();
+        bought = this.getBoughtElements();
+
+        return <section className={Styles.root}>
+            <h2 onClick={this._onHeadingClick} className={Styles.title}>Store</h2>
+            {rentals}
+            {bought}
+            {total}
         </section>
     }
 }

@@ -5,7 +5,7 @@ import Styles from '../../src/components/calls/calls.css';
 
 describe('.calls', () => {
 
-    let callData, callTotal;
+    let callData, callTotal, calls;
 
     beforeEach(() => {
         callData = [{
@@ -23,20 +23,32 @@ describe('.calls', () => {
         }];
 
         callTotal = 20.32;
+        calls = shallow(<Calls calls={callData} callTotal={callTotal}/>);
     });
 
-    it('should render three item views', () => {
-      const subscriptions = shallow(<Calls calls={callData} currency='$' callTotal={callTotal}/>);
-      expect(subscriptions.find('tbody tr').length).toEqual(3);
+    describe('when state `hidden` is set to true', () => {
+        it('should render the basic information', () => {
+            expect(calls.find(`.${Styles.title}`).html()).toEqual(`<h2 class="${Styles.title}">Calls</h2>`)
+        });
     });
 
-    it('should render the correct information in the item view', () => {
-      const subscriptions = shallow(<Calls calls={callData} currency='$' callTotal={callTotal}/>);
-      expect(subscriptions.find('tbody tr').at(0).html()).toEqual(`<tr><td>123123123</td><td>00:12:00</td><td class="${Styles.bodyCost}">$1.2</td></tr>`);
-    });
+    describe('when state `hidden` is set to false', () => {
+        beforeEach(() => {
+            calls.setState({
+                hidden: false
+            });
+        });
 
-    it('should render the call total', () => {
-        const subscriptions = shallow(<Calls calls={callData} currency='$' callTotal={callTotal}/>);
-        expect(subscriptions.find('tfoot').html()).toEqual(`<tfoot><tr class="${Styles.total}"><th class="${Styles.totalTitle}">Total</th><th class="${Styles.totalValue}" colspan="2">$20.32</th></tr></tfoot>`);
+        it('should render three item views', () => {
+          expect(calls.find('tbody tr').length).toEqual(3);
+        });
+
+        it('should render the correct information in the item view', () => {
+          expect(calls.find('tbody tr').at(0).html()).toEqual(`<tr><td>123123123</td><td>00:12:00</td><td class="${Styles.bodyCost}">£1.2</td></tr>`);
+        });
+
+        it('should render the call total', () => {
+            expect(calls.find('tfoot').html()).toEqual(`<tfoot><tr class="${Styles.tableTotal}"><th class="${Styles.tableTotalTitle}">Calls Total</th><th class="${Styles.tableTotalValue}" colspan="2">£20.32</th></tr></tfoot>`);
+        });
     });
 });

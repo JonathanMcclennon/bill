@@ -1,10 +1,10 @@
 import React from 'react';
 import { render } from 'enzyme';
-import Total from '../../src/components/total.react.js';
+import Total from '../../src/components/total/total.react.js';
 
 describe('.total', () => {
     it('should render the correct html', () => {
-      let result = '£132.55';
+      let result = 'Total: £132.55';
       const total = render(<Total total='132.55' currency='£' />);
       expect(total.text()).toEqual(result);
     });
