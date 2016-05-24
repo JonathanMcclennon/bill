@@ -6,8 +6,7 @@ let initialState = {
     hidden: true
 }
 
-
-class Calls extends React.Component {
+class Table extends React.Component {
 
     constructor(props) {
         super(props);
@@ -15,9 +14,37 @@ class Calls extends React.Component {
         this._onHeadingClick = this._onHeadingClick.bind(this);
     }
 
+    /**
+     * Update state when heading is click
+     * @private
+     */
     _onHeadingClick() {
         this.setState({
             hidden: !this.state.hidden
+        });
+    }
+
+    /**
+     * Gets the body content for the table
+     * @return {Element}
+     * @private
+     */
+    _getBody() {
+        return this.props.data.map((item, key) => {
+            let details = this.props.tableConfig.map((config, key) => {
+                let value = item[config.value],
+                    className = '';
+
+                if (config.format) {
+                    value = config.format(value)
+                }
+
+                return <td key={key} className={Styles[config.className]}>{value}</td>
+            });
+
+            return <tr key={key} className={Styles.tableRow}>
+                {details}
+            </tr>
         });
     }
 
@@ -39,25 +66,10 @@ class Calls extends React.Component {
             return <section className={Styles.root}>{heading}</section>
         }
 
-        let data = this.props.data.map((item, key) => {
-            let details = this.props.tableConfig.map((config, key) => {
-                let value = item[config.value],
-                    className = '';
-
-                if (config.format) {
-                    value = config.format(value)
-                }
-
-                return <td key={key} className={Styles[config.className]}>{value}</td>
-            });
-
-            return <tr key={key} className={Styles.tableRow}>
-                {details}
-            </tr>
-        });
+        let tableBody = this._getBody();
 
         let tableHeadings = this.props.tableConfig.map((config, key) => {
-            return <th key={key}>{config.heading}</th>;
+            return <th key={key} className={Styles.tableHeadCells}>{config.heading}</th>;
         })
 
         return <section className={Styles.root}>
@@ -66,10 +78,10 @@ class Calls extends React.Component {
                 <thead className={Styles.tableHeading}>
                     <tr>{tableHeadings}</tr>
                 </thead>
-                <tbody className={Styles.tableBody}>{data}</tbody>
+                <tbody className={Styles.tableBody}>{tableBody}</tbody>
             </table>
         </section>
     }
 }
 
-module.exports = Calls;
+module.exports = Table;

@@ -36,12 +36,7 @@
     text-align: right;
 }
 
-.price {
-    text-align: right;
-    font-family: 'courier new';
-    font-weight: normal;
-}
-th {
+.tableHeadCells {
     font-size: 12px;
     font-weight: bold;
 }
@@ -54,45 +49,14 @@ th {
     border-top: 1px dashed #ccc;
 
 }
+
 .tableRow td {
     padding: 5px 0;
 
 }
 
-.bodyCost {
+.price {
     text-align: right;
-}
-
-.total {
-    margin-top: 12px;
-    padding-top: 12px;
-    border-top: 1px solid #000;
-    font-weight: bold;
-    font-size: 16px;
-}
-
-.totalTitle {
-    width: 50%;
-    float: left;
-}
-
-.totalPrice {
-    width: 50%;
-    float: left;
-    text-align: right;
-}
-
-.tableTotal {
-    line-height: 50px;
-    font-size: 16px;
-}
-
-.tableTotalTitle {
-    text-align: left;
-    font-weight: bold;
-}
-
-.tableTotalValue {
-    text-align: right;
-    font-weight: bold;
+    font-family: 'courier new';
+    font-weight: normal;
 }
