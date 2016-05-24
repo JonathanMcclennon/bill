@@ -5,12 +5,46 @@ import BillStore from './stores/BillStore';
 import Title from './components/title/title.react';
 import Total from './components/total/total.react';
 import Subscriptions from './components/subscriptions/subscriptions.react';
-import Calls from './components/calls/calls.react';
+import Table from './components/table/table.react';
 import Store from './components/store/store.react';
+import currency from './utils/currency';
 
 const initialState = {
     isBillReady: BillStore.isBillReady()
 }
+
+const _callsConfig = [{
+    heading: 'Number',
+    value: 'called'
+}, {
+    heading: 'Duration',
+    value: 'duration'
+}, {
+    heading: 'Cost',
+    value: 'cost',
+    format: currency.getFormattedCurrency
+}];
+
+const _subscriptionConfig = [{
+    heading: 'Name',
+    value: 'name'
+}, {
+    heading: 'Price',
+    value: 'cost',
+    format: currency.getFormattedCurrency
+}]
+
+const _storeConfig = [{
+    heading: 'Title',
+    value: 'title'
+}, {
+    heading: 'Purchase Type',
+    value: 'type'
+}, {
+    heading: 'Price',
+    value: 'cost',
+    format: currency.getFormattedCurrency
+}]
 
 class App extends React.Component {
 
@@ -37,11 +71,13 @@ class App extends React.Component {
             subscriptionTotal: BillStore.getSubscriptionTotal(),
             calls: BillStore.getCallCharges(),
             callTotal: BillStore.getCallTotal(),
-            rentals: BillStore.getRentals(),
-            bought: BillStore.getBuyAndKeep(),
+            storeData: BillStore.getAllStoreData(),
             storeTotal: BillStore.getStoreTotal()
         });
     }
+    //
+    // <Subscriptions subscriptions={this.state.subscriptions} total={this.state.subscriptionTotal} />
+    // <Store rentals={this.state.rentals} bought={this.state.bought} total={this.state.storeTotal} currency={settings.currency} />
 
     render() {
         if (!this.state.isBillReady) {
@@ -49,9 +85,9 @@ class App extends React.Component {
         }
         return <main>
             <Title due={this.state.timings.due} generated={this.state.timings.generated} period={this.state.timings.period} />
-            <Subscriptions subscriptions={this.state.subscriptions} total={this.state.subscriptionTotal} />
-            <Store rentals={this.state.rentals} bought={this.state.bought} total={this.state.storeTotal} currency={settings.currency} />
-            <Calls calls={this.state.calls} callTotal={this.state.callTotal} />
+            <Table title='Subscriptions' tableConfig={_subscriptionConfig} data={this.state.subscriptions} total={this.state.subscriptionTotal} />
+            <Table title='Store' tableConfig={_storeConfig} data={this.state.storeData} total={this.state.storeTotal} />
+            <Table title='Calls' tableConfig={_callsConfig} data={this.state.calls} total={this.state.callTotal} />
             <Total currency={settings.currency} total={this.state.total} />
         </main>;
     }

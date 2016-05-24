@@ -6,6 +6,9 @@
 
 .title {
     font-size: 18px;
+    font-weight: bold;
+    border-bottom: 1px solid #AEACAC;
+    line-height: 36px;
 }
 
 .table {
@@ -14,12 +17,21 @@
 
 .heading {
     text-align: left;
-    font-weight: bold;
     line-height: 50px;
     font-size: 16px;
 }
 
-.headingCost {
+.heading tr th:last-child {
+    text-align: right;
+}
+
+.price {
+    float: right;
+    font-family: 'courier new';
+    font-weight: normal;
+}
+
+.tableBody tr td:last-child{
     text-align: right;
 }
 

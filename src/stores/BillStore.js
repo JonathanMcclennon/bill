@@ -15,6 +15,7 @@ let _rentals;
 let _buyAndKeep;
 let _statementTotal;
 let _callTotal;
+let _allStoreData;
 let _storeTotal;
 
 const BillStore = assign({}, EventEmitter.prototype, {
@@ -67,16 +68,30 @@ const BillStore = assign({}, EventEmitter.prototype, {
         }
 
         if (data.skyStore) {
+            _allStoreData = []
             if (data.skyStore.total) {
                 _storeTotal = data.skyStore.total;
             }
 
             if (data.skyStore.rentals) {
                 _rentals = data.skyStore.rentals;
+
+                _.each(_rentals, (item) => {
+                    item.type = 'Rent';
+
+                    _allStoreData.push(item);
+                })
+
             }
 
             if (data.skyStore.buyAndKeep) {
                 _buyAndKeep = data.skyStore.buyAndKeep;
+
+                _.each(_buyAndKeep, (item) => {
+                    item.type = 'Buy';
+
+                    _allStoreData.push(item);
+                })
             }
         }
     },
@@ -115,6 +130,10 @@ const BillStore = assign({}, EventEmitter.prototype, {
 
     getBuyAndKeep() {
         return _buyAndKeep;
+    },
+
+    getAllStoreData() {
+        return _allStoreData
     },
 
     getStoreTotal() {
