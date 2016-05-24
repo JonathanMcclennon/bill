@@ -12,8 +12,10 @@
 }
 
 .table {
-    width: 100%;
+    width: 90%;
+    margin: 0 0 0 10%;
 }
+
 
 .heading {
     text-align: left;
@@ -25,14 +27,33 @@
     text-align: right;
 }
 
-.price {
+.headingPrice {
     float: right;
     font-family: 'courier new';
     font-weight: normal;
 }
 
+.price {
+    text-align: right;
+    font-family: 'courier new';
+    font-weight: normal;
+}
+th {
+    font-size: 12px;
+    font-weight: bold;
+}
+
 .tableBody tr td:last-child{
     text-align: right;
+}
+
+.tableRow {
+    border-top: 1px dashed #ccc;
+
+}
+.tableRow td {
+    padding: 5px 0;
+
 }
 
 .bodyCost {

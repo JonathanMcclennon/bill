@@ -22,7 +22,7 @@ class Calls extends React.Component {
     }
 
     render() {
-        let heading = <h2 onClick={this._onHeadingClick} className={Styles.title}><label>+ {this.props.title}</label><label className={Styles.price}>{currency.getFormattedCurrency(this.props.total)}</label></h2>;
+        let heading = <h2 onClick={this._onHeadingClick} className={Styles.title}><label>+ {this.props.title}</label><label className={Styles.headingPrice}>{currency.getFormattedCurrency(this.props.total)}</label></h2>;
 
         if (this.state.hidden) {
             return <section className={Styles.root}>{heading}</section>
@@ -30,16 +30,17 @@ class Calls extends React.Component {
 
         let data = this.props.data.map((item, key) => {
             let details = this.props.tableConfig.map((config, key) => {
-                let value = item[config.value];
+                let value = item[config.value],
+                    className = '';
 
                 if (config.format) {
                     value = config.format(value)
                 }
 
-                return <td key={key}>{value}</td>
+                return <td key={key} className={Styles[config.className]}>{value}</td>
             });
 
-            return <tr key={key}>
+            return <tr key={key} className={Styles.tableRow}>
                 {details}
             </tr>
         });

@@ -4,9 +4,7 @@ import settings from './settings';
 import BillStore from './stores/BillStore';
 import Title from './components/title/title.react';
 import Total from './components/total/total.react';
-import Subscriptions from './components/subscriptions/subscriptions.react';
 import Table from './components/table/table.react';
-import Store from './components/store/store.react';
 import currency from './utils/currency';
 
 const initialState = {
@@ -22,7 +20,8 @@ const _callsConfig = [{
 }, {
     heading: 'Cost',
     value: 'cost',
-    format: currency.getFormattedCurrency
+    format: currency.getFormattedCurrency,
+    className: 'price'
 }];
 
 const _subscriptionConfig = [{
@@ -31,7 +30,8 @@ const _subscriptionConfig = [{
 }, {
     heading: 'Price',
     value: 'cost',
-    format: currency.getFormattedCurrency
+    format: currency.getFormattedCurrency,
+    className: 'price'
 }]
 
 const _storeConfig = [{
@@ -43,7 +43,8 @@ const _storeConfig = [{
 }, {
     heading: 'Price',
     value: 'cost',
-    format: currency.getFormattedCurrency
+    format: currency.getFormattedCurrency,
+    className: 'price'
 }]
 
 class App extends React.Component {

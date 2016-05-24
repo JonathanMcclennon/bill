@@ -6,9 +6,9 @@ class Title extends React.Component {
         let start = this.props.period.from;
         let to = this.props.period.to;
         return <header className={Styles.root}>
-            <h1 className={Styles.title}>Bill</h1>
+            <h1 className={Styles.title}>Monthly Statement</h1>
             <dl>
-                <dt className={Styles.subtitle}>Date due:</dt>
+                <dt className={Styles.subtitle}>Payment due by:</dt>
                 <dd className={Styles.item}>{this.props.due}</dd>
             </dl>
             <dl>
@@ -16,7 +16,7 @@ class Title extends React.Component {
                 <dd className={Styles.item}>{this.props.generated}</dd>
             </dl>
             <dl>
-                <dt className={Styles.subtitle}>Period:</dt>
+                <dt className={Styles.subtitle}>Period from:</dt>
                 <dd className={Styles.item}>{start} - {to}</dd>
             </dl>
         </header>

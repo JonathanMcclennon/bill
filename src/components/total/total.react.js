@@ -8,7 +8,12 @@ class Total extends React.Component {
     }
 
     render() {
-        return <div className={Styles.root}>Total: {this.getFormattedCurrency()}</div>
+        return <section>
+                <div className={Styles.root}>Total: {this.getFormattedCurrency()}</div>
+                <output>
+                    <b>0</b><b>4</b><b>7</b><b>1</b><b>6</b><b>5</b><b>7</b><b>2</b><b>0</b><b>4</b><b>6</b><b>9</b><b>0</b><b>0</b><b>4</b><b>2</b><b>9</b><b>6</b><b>8</b><b>1</b><b>1</b><b>2</b>
+                </output>
+            </section>
     }
 }
 

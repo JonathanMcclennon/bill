@@ -5,13 +5,16 @@
 .title {
     font-size: 24px;
     font-weight: bold;
+    padding: 40px 0 20px 0;
 }
 
 .subtitle {
     display: inline-block;
     margin-right: 12px;
+    font-size: 12px;
 }
 
 .item {
     display: inline-block;
+    font-size: 12px;
 }
