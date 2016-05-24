@@ -5,20 +5,18 @@ describe('BillStore', () => {
     describe('.register', () => {
         let registerCallback;
 
-        beforeEach(() => {
-            spyOn(AppDispatcher, 'register');
-            registerCallback = AppDispatcher.register.calls.mostRecent().args[0];
-        });
-
-        xdescribe('case:RECIEVE_BILL', () => {
+        describe('case:RECIEVE_BILL', () => {
             it('should set the statement total', () => {
                 let total = 123.23;
 
-                registerCallback({
-                    actionType: 'RECIEVE_BILL',
-                    response: {
+                AppDispatcher.dispatch({
+                    source: 'TEST_ACTION',
+                    action: {
+                        actionType: 'RECIEVE_BILL',
                         data: {
-                            total: statementTotal
+                            body: {
+                                total: total
+                            }
                         }
                     }
                 });
@@ -34,11 +32,14 @@ describe('BillStore', () => {
                     generated: '19-05-2015'
                 };
 
-                registerCallback({
-                    actionType: 'RECIEVE_BILL',
-                    response: {
+                AppDispatcher.dispatch({
+                    source: 'TEST_ACTION',
+                    action: {
+                        actionType: 'RECIEVE_BILL',
                         data: {
-                            statement: timings
+                            body: {
+                                statement: timings
+                            }
                         }
                     }
                 });
@@ -55,12 +56,16 @@ describe('BillStore', () => {
                     cost: 50
                 }];
 
-                registerCallback({
-                    actionType: 'RECIEVE_BILL',
-                    response: {
+
+                AppDispatcher.dispatch({
+                    source: 'TEST_ACTION',
+                    action: {
+                        actionType: 'RECIEVE_BILL',
                         data: {
-                            packages: {
-                                subscriptions: subscriptionData
+                            body: {
+                                package: {
+                                    subscriptions: subscriptionData
+                                }
                             }
                         }
                     }
@@ -68,7 +73,7 @@ describe('BillStore', () => {
 
                 let subscriptions = BillStore.getSubscriptions();
 
-                expect(subscriptions).toEqual(subscriptions);
+                expect(subscriptions).toEqual(subscriptionData);
             });
 
             it('should set the call charges', () => {
@@ -77,52 +82,69 @@ describe('BillStore', () => {
                         called: '123123123123',
                         duration: '00:23:00',
                         cost: 2.12
-                    }]
+                    }],
+                    total: 2.12
                 };
 
-                registerCallback({
-                    actionType: 'RECIEVE_BILL',
-                    response: {
+                AppDispatcher.dispatch({
+                    source: 'TEST_ACTION',
+                    action: {
+                        actionType: 'RECIEVE_BILL',
                         data: {
-                            callCharges: callChargeData
+                            body: {
+                                callCharges: callChargeData
+                            }
                         }
                     }
                 });
 
                 let callCharges = BillStore.getCallCharges();
 
-                expect(callCharges).toEqual(subscriptions);
+                expect(callCharges).toEqual(callChargeData.calls);
             });
 
             it('should set the call total', () => {
-                let callChargeTotal = 123.44;
+                let callChargeData = {
+                    calls: [{
+                        called: '123123123123',
+                        duration: '00:23:00',
+                        cost: 2.12
+                    }],
+                    total: 123.23
+                };
 
-                registerCallback({
-                    actionType: 'RECIEVE_BILL',
-                    response: {
+                AppDispatcher.dispatch({
+                    source: 'TEST_ACTION',
+                    action: {
+                        actionType: 'RECIEVE_BILL',
                         data: {
-                            callCharges: callChargeData
+                            body: {
+                                callCharges: callChargeData
+                            }
                         }
                     }
                 });
 
                 let callTotal = BillStore.getCallTotal();
 
-                expect(callTotal).toEqual(callChargeTotal);
+                expect(callTotal).toEqual(123.23);
             });
 
             it('should set the rentals details', () => {
-                let rentalData = {
+                let rentalData = [{
                     title: 'Movie',
                     cost: 4.99
-                };
+                }];
 
-                registerCallback({
-                    actionType: 'RECIEVE_BILL',
-                    response: {
+                AppDispatcher.dispatch({
+                    source: 'TEST_ACTION',
+                    action: {
+                        actionType: 'RECIEVE_BILL',
                         data: {
-                            skyStore: {
-                                rentals: rentalData
+                            body: {
+                                skyStore: {
+                                    rentals: rentalData
+                                }
                             }
                         }
                     }
@@ -130,7 +152,7 @@ describe('BillStore', () => {
 
                 let rentals = BillStore.getRentals();
 
-                expect(rentals).toEqual(subscriptions);
+                expect(rentals).toEqual(rentalData);
             });
 
             it('should set the buy and keep details', () => {
@@ -139,12 +161,15 @@ describe('BillStore', () => {
                     cost: 4.99
                 }];
 
-                registerCallback({
-                    actionType: 'RECIEVE_BILL',
-                    response: {
+                AppDispatcher.dispatch({
+                    source: 'TEST_ACTION',
+                    action: {
+                        actionType: 'RECIEVE_BILL',
                         data: {
-                            skyStore: {
-                                buyAndKeep: buyAndKeepData
+                            body: {
+                                skyStore: {
+                                    buyAndKeep: buyAndKeepData
+                                }
                             }
                         }
                     }
@@ -158,12 +183,15 @@ describe('BillStore', () => {
             it('should set the store total', () => {
                 let storeTotalData = 123.32;
 
-                registerCallback({
-                    actionType: 'RECIEVE_BILL',
-                    response: {
+                AppDispatcher.dispatch({
+                    source: 'TEST_ACTION',
+                    action: {
+                        actionType: 'RECIEVE_BILL',
                         data: {
-                            skyStore: {
-                                total: storeTotalData
+                            body: {
+                                skyStore: {
+                                    total: storeTotalData
+                                }
                             }
                         }
                     }
@@ -172,6 +200,45 @@ describe('BillStore', () => {
                 let storeTotal = BillStore.getStoreTotal();
 
                 expect(storeTotal).toEqual(storeTotalData);
+            });
+
+            it('should create store information data adding both rentals and bought data', () => {
+                let buyAndKeepData = [{
+                    title: 'Movie',
+                    cost: 4.99
+                }];
+
+                let rentalData = [{
+                    title: 'Movie',
+                    cost: 4.99
+                }];
+
+
+                AppDispatcher.dispatch({
+                    source: 'TEST_ACTION',
+                    action: {
+                        actionType: 'RECIEVE_BILL',
+                        data: {
+                            body: {
+                                skyStore: {
+                                    buyAndKeep: buyAndKeepData,
+                                    rentals: rentalData
+                                }
+                            }
+                        }
+                    }
+                });
+
+                let getAllStoreData = BillStore.getAllStoreData();
+                expect(getAllStoreData).toEqual([ {
+                    title: 'Movie',
+                    cost: 4.99,
+                    type: 'Rent'
+                },{
+                    title: 'Movie',
+                    cost: 4.99,
+                    type: 'Buy'
+                }]);
             });
         });
     });

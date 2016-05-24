@@ -58,7 +58,7 @@ describe('.table', () => {
         })
 
         it('should return the correct table headings', () => {
-            expect(table.find(`.${Styles.tableHeading}`).html()).toEqual(`<thead class="${Styles.tableHeading}"><tr><th>Number</th><th>Duration</th><th>Price</th></tr></thead>`);
+            expect(table.find(`.${Styles.tableHeading}`).html()).toEqual(`<thead class="${Styles.tableHeading}"><tr><th class="${Styles.tableHeadCells}">Number</th><th class="${Styles.tableHeadCells}">Duration</th><th class="${Styles.tableHeadCells}">Price</th></tr></thead>`);
         });
 
         it('should return the correct table body', () => {
