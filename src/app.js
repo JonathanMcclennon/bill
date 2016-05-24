@@ -76,9 +76,6 @@ class App extends React.Component {
             storeTotal: BillStore.getStoreTotal()
         });
     }
-    //
-    // <Subscriptions subscriptions={this.state.subscriptions} total={this.state.subscriptionTotal} />
-    // <Store rentals={this.state.rentals} bought={this.state.bought} total={this.state.storeTotal} currency={settings.currency} />
 
     render() {
         if (!this.state.isBillReady) {
