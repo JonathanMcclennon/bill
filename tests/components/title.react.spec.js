@@ -10,7 +10,7 @@ describe('.title', () => {
           to: 2
       };
       const title = shallow(<Title due='due' generated='generated' period={period} />);
-      expect(title.find('dl').at(0).html()).toEqual(`<dl><dt class="${Styles.subtitle}">Date due:</dt><dd class="${Styles.item}">due</dd></dl>`);
+      expect(title.find('dl').at(0).html()).toEqual(`<dl><dt class="${Styles.subtitle}">Payment due by:</dt><dd class="${Styles.item}">due</dd></dl>`);
   });
 
   it('should render the correct generated date html', () => {
@@ -28,6 +28,6 @@ describe('.title', () => {
           to: 2
       };
       const title = shallow(<Title due='due' generated='generated' period={period} />);
-      expect(title.find('dl').at(2).html()).toEqual(`<dl><dt class="${Styles.subtitle}">Period:</dt><dd class="${Styles.item}">1 - 2</dd></dl>`);
+      expect(title.find('dl').at(2).html()).toEqual(`<dl><dt class="${Styles.subtitle}">Period from:</dt><dd class="${Styles.item}">1 - 2</dd></dl>`);
   });
 });

@@ -63,7 +63,7 @@ class Calls extends React.Component {
         return <section className={Styles.root}>
             {heading}
             <table className={Styles.table}>
-                <thead className={Styles.heading}>
+                <thead className={Styles.tableHeading}>
                     <tr>{tableHeadings}</tr>
                 </thead>
                 <tbody className={Styles.tableBody}>{data}</tbody>

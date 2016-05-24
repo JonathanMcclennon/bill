@@ -8,7 +8,7 @@ describe('.table', () => {
     let config, data, formatSpy, table, total;
 
     beforeEach(() => {
-        formatSpy = jasmine.createSpy();
+        formatSpy = jasmine.createSpy().and.returnValue('foo');
 
         config = [{
             heading: 'Number',
@@ -19,7 +19,8 @@ describe('.table', () => {
         }, {
             heading: 'Price',
             value: 'cost',
-            classType: 'price'
+            classType: 'price',
+            format: formatSpy
         }]
 
         data = [{
@@ -44,62 +45,29 @@ describe('.table', () => {
 
     describe('when state `hidden` is set to true', () => {
         it('should return just the heading', () => {
-            expect(table.html()).toEqual(`<section class="${Styles.root}"><h2 class="${Styles.title}"><label>+ Title</label><label class="${Styles.price}">£123.40</label></h2></section>`)
+            expect(table.html()).toEqual(`<section class="${Styles.root}"><h2 class="${Styles.title}"><label>[<span class="${Styles.headingIcon}">+</span>] Title</label><label class="${Styles.headingPrice}">£123.40</label></h2></section>`)
         });
     });
 
     describe('when state `hidden` is set to false', () => {
 
         beforeEach(() => {
-
+            table.setState({
+                hidden: false
+            });
         })
 
         it('should return the correct table headings', () => {
-
+            expect(table.find(`.${Styles.tableHeading}`).html()).toEqual(`<thead class="${Styles.tableHeading}"><tr><th>Number</th><th>Duration</th><th>Price</th></tr></thead>`);
         });
 
         it('should return the correct table body', () => {
-
+            expect(table.find(`.${Styles.tableBody} tr`).at(0).html()).toEqual(`<tr class="${Styles.tableRow}"><td>123123123</td><td>00:12:00</td><td>foo</td></tr>`);
         });
 
         it('should should call the format function if passed', () => {
-
+            expect(table.find(`.${Styles.tableBody} tr td`).at(2).text()).not.toEqual('1.2');
+            expect(table.find(`.${Styles.tableBody} tr td`).at(2).text()).toEqual('foo');
         });
     });
-
-    //
-    // let callData, callTotal, calls;
-    //
-    // beforeEach(() => {
-    //
-    //
-    //     callTotal = 20.32;
-    //     calls = shallow(<Calls calls={callData} callTotal={callTotal}/>);
-    // });
-    //
-    // describe('when state `hidden` is set to true', () => {
-    //     it('should render the basic information', () => {
-    //         expect(calls.find(`.${Styles.title}`).html()).toEqual(`<h2 class="${Styles.title}">Calls</h2>`)
-    //     });
-    // });
-    //
-    // describe('when state `hidden` is set to false', () => {
-    //     beforeEach(() => {
-    //         calls.setState({
-    //             hidden: false
-    //         });
-    //     });
-    //
-    //     it('should render three item views', () => {
-    //       expect(calls.find('tbody tr').length).toEqual(3);
-    //     });
-    //
-    //     it('should render the correct information in the item view', () => {
-    //       expect(calls.find('tbody tr').at(0).html()).toEqual(`<tr><td>123123123</td><td>00:12:00</td><td class="${Styles.bodyCost}">£1.2</td></tr>`);
-    //     });
-    //
-    //     it('should render the call total', () => {
-    //         expect(calls.find('tfoot').html()).toEqual(`<tfoot><tr class="${Styles.tableTotal}"><th class="${Styles.tableTotalTitle}">Calls Total</th><th class="${Styles.tableTotalValue}" colspan="2">£20.32</th></tr></tfoot>`);
-    //     });
-    // });
 });

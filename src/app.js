@@ -89,7 +89,7 @@ class App extends React.Component {
             <Table title='Subscriptions' tableConfig={_subscriptionConfig} data={this.state.subscriptions} total={this.state.subscriptionTotal} />
             <Table title='Store' tableConfig={_storeConfig} data={this.state.storeData} total={this.state.storeTotal} />
             <Table title='Calls' tableConfig={_callsConfig} data={this.state.calls} total={this.state.callTotal} />
-            <Total currency={settings.currency} total={this.state.total} />
+            <Total total={this.state.total} />
         </main>;
     }
 }

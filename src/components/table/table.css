@@ -11,22 +11,6 @@
     line-height: 36px;
 }
 
-.table {
-    width: 90%;
-    margin: 0 0 0 10%;
-}
-
-
-.heading {
-    text-align: left;
-    line-height: 50px;
-    font-size: 16px;
-}
-
-.heading tr th:last-child {
-    text-align: right;
-}
-
 .headingPrice {
     float: right;
     font-family: 'courier new';
@@ -35,6 +19,21 @@
 
 .headingIcon {
     font-family: 'courier new';
+}
+
+.table {
+    width: 90%;
+    margin: 0 0 0 10%;
+}
+
+.tableHeading {
+    text-align: left;
+    line-height: 50px;
+    font-size: 16px;
+}
+
+.tableHeading tr th:last-child {
+    text-align: right;
 }
 
 .price {
