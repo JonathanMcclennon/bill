@@ -21,8 +21,19 @@ class Calls extends React.Component {
         });
     }
 
+    /**
+     * Returns the correct heading icon depending on the state
+     * @return {String}
+     */
+    _getHeadingIcon() {
+        return this.state.hidden ? '+' : '-';
+    }
+
     render() {
-        let heading = <h2 onClick={this._onHeadingClick} className={Styles.title}><label>+ {this.props.title}</label><label className={Styles.headingPrice}>{currency.getFormattedCurrency(this.props.total)}</label></h2>;
+        let heading = <h2 onClick={this._onHeadingClick} className={Styles.title}>
+            <label>[<span className={Styles.headingIcon}>{this._getHeadingIcon()}</span>] {this.props.title}</label>
+            <label className={Styles.headingPrice}>{currency.getFormattedCurrency(this.props.total)}</label>
+        </h2>;
 
         if (this.state.hidden) {
             return <section className={Styles.root}>{heading}</section>

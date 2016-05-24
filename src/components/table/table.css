@@ -33,6 +33,10 @@
     font-weight: normal;
 }
 
+.headingIcon {
+    font-family: 'courier new';
+}
+
 .price {
     text-align: right;
     font-family: 'courier new';
