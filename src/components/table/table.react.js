@@ -84,4 +84,11 @@ class Table extends React.Component {
     }
 }
 
+Table.propTypes = {
+    tableConfig: React.PropTypes.arrayOf(React.PropTypes.object),
+    data: React.PropTypes.arrayOf(React.PropTypes.object),
+    title: React.PropTypes.string.isRequired,
+    total: React.PropTypes.number.isRequired
+}
+
 module.exports = Table;
